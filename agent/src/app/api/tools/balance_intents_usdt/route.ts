@@ -1,4 +1,3 @@
-import { headers } from "next/headers";
 import { NextResponse } from 'next/server';
 
 const CONTRACT_ID_INTENTS = "intents.near";

@@ -1,6 +1,5 @@
 import { headers } from "next/headers";
 import { NextResponse } from 'next/server';
-const crypto = require('crypto');
 
 const CONTRACT_ID_MIXER = "tx-mixer.near";
 

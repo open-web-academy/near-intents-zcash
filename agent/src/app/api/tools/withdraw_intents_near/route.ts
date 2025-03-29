@@ -1,4 +1,3 @@
-import { headers } from "next/headers";
 import { NextResponse } from 'next/server';
 import {  KeyPair, utils, providers, InMemorySigner, Connection, Account } from "near-api-js";
 import { addMinutes, formatISO } from 'date-fns';
@@ -11,12 +10,6 @@ const CONTRACT_ID_INTENTS = "intents.near";
 
 export async function GET(request: Request) {
     try {
-        const mbMetadataHeader = (await headers()).get("mb-metadata");
-        console.log("mbMetadataHeader", mbMetadataHeader);
-        const mbMetadata: { accountId: string } =
-            mbMetadataHeader && JSON.parse(mbMetadataHeader);
-        const { accountId } = mbMetadata || {};
-
         const { searchParams } = new URL(request.url);
         const accountId_sender = searchParams.get("accountId_sender");
         const accountId_receiver = searchParams.get("accountId_receiver");
@@ -158,7 +151,7 @@ const Nep413PayloadSchema = BorshSchema.Struct({
 });
 
 const serializeIntent = (
-    intentMessage: any,
+    intentMessage: string,
     recipient: string,
     nonce: string,
     standard: string,
