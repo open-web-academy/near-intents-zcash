@@ -1,6 +1,5 @@
 import { headers } from "next/headers";
 import { NextResponse } from 'next/server';
-import { connect, keyStores, KeyPair, transactions, utils } from "near-api-js";
 
 const CONTRACT_ID_INTENTS = "intents.near";
 const CONTRACT_ID_USDT = "usdt.tether-token.near";
@@ -8,7 +7,6 @@ const CONTRACT_ID_USDT = "usdt.tether-token.near";
 export async function GET(request: Request) {
     try {
         const mbMetadataHeader = (await headers()).get("mb-metadata");
-        console.log("mbMetadataHeader", mbMetadataHeader);
         const mbMetadata: { accountId: string } =
             mbMetadataHeader && JSON.parse(mbMetadataHeader);
         const { accountId } = mbMetadata || {};

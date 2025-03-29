@@ -1,6 +1,6 @@
 import { headers } from "next/headers";
 import { NextResponse } from 'next/server';
-import { connect, keyStores, KeyPair, transactions, utils, WalletConnection, providers, InMemorySigner, Connection, Account } from "near-api-js";
+import {  KeyPair, utils, providers, InMemorySigner, Connection, Account } from "near-api-js";
 import { addMinutes, formatISO } from 'date-fns';
 import { randomBytes, createHash } from 'crypto';
 import { BorshSchema, borshSerialize } from 'borsher';
@@ -8,7 +8,6 @@ import bs58 from 'bs58';
 import { InMemoryKeyStore } from "near-api-js/lib/key_stores";
 
 const CONTRACT_ID_INTENTS = "intents.near";
-const CONTRACT_ID_NEAR = "wrap.near";
 
 export async function GET(request: Request) {
     try {

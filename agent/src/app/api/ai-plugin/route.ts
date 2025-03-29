@@ -46,7 +46,9 @@ export async function GET() {
                     7.- Withdraw NEAR from Mixer Contract: /api/tools/withdraw_mixer_near
                         
                 `,
-                tools: [{ type: "generate-transaction" }, { type: "generate-evm-tx" }, { type: "sign-message" }]
+                tools: [{ type: "generate-transaction" }, { type: "generate-evm-tx" }, { type: "sign-message" }],
+                image: "https://z.cash/wp-content/uploads/2023/03/zcash-logo.gif",
+                categories: ["DeFi"],
             }
         },
         paths: {

@@ -1,16 +1,10 @@
 import { headers } from "next/headers";
 import { NextResponse } from 'next/server';
-import { connect, keyStores, KeyPair, transactions, utils } from "near-api-js";
 
 const CONTRACT_ID_INTENTS = "intents.near";
 
 export async function GET(request: Request) {
     try {
-        const mbMetadataHeader = (await headers()).get("mb-metadata");
-        const mbMetadata: { accountId: string } =
-            mbMetadataHeader && JSON.parse(mbMetadataHeader);
-        const { accountId } = mbMetadata || {};
-
         const { searchParams } = new URL(request.url);
         const account_id = searchParams.get("account_id");
 
