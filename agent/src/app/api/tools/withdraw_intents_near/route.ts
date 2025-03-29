@@ -108,7 +108,7 @@ export async function GET(request: Request) {
             },
         });
 
-        const json: any = await response.json();
+        const json = await response.json();
 
         if (!response.ok) {
             throw new Error(
