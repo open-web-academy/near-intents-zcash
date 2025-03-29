@@ -1,0 +1,24 @@
+[package]
+name = "near-mixer"
+version = "0.1.0"
+edition = "2021"
+authors = ["Your Name <your.email@example.com>"]
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+near-sdk = { version = "5.11.0", features = ["legacy"] }
+borsh = "1.0.0"
+sha2 = "0.10.6"
+
+[dev-dependencies]
+near-sdk = { version = "5.11.0", features = ["legacy", "unit-testing"] }
+
+[profile.release]
+codegen-units = 1
+opt-level = "z"
+lto = true
+debug = false
+panic = "abort"
+overflow-checks = true

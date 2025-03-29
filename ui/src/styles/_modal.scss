@@ -1,0 +1,16 @@
+@media (max-width: 767px) {
+  .rt-BaseDialogScrollPadding:where(.rt-r-align-center) {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+  }
+
+  .rt-BaseDialogScrollPadding {
+    padding: 0;
+  }
+
+  .rt-BaseDialogContent:where(.rt-r-size-3) {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
