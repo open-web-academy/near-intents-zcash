@@ -93,7 +93,8 @@ const ConnectWallet = () => {
           <Button
             type={"button"}
             variant={"soft"}
-            color={"gray"}
+            color={"amber"}
+            highContrast
             size={"2"}
             radius={"full"}
             disabled={TURN_OFF_APPS}
