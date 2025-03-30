@@ -38,7 +38,8 @@ export default function Agent() {
         agentId={bitteAgent.id}
         apiUrl="/api/chat"
         historyApiUrl="/api/history"
-      />
+        wallet={{ near: { wallet } }}
+        />
     </div>
   </main>
   )
