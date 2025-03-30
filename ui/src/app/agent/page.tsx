@@ -9,7 +9,7 @@ import { useWalletSelector } from "../../providers/WalletSelectorProvider"
 
 const bitteAgent = {
   id: "near-intents-zcash.vercel.app",
-  name: "NEAR Intents ZCash Assistant",
+  name: "AI-Mixer Assistant",
   verified: true,
   image: "https://z.cash/wp-content/uploads/2023/03/zcash-logo.gif",
 };
