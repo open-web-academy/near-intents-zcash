@@ -1,140 +1,76 @@
-# Bitte AI Agent NextJS Template
+# NEAR Intents ZCash Agent
 
-This template provides a starting point for creating AI agents using the Bitte Protocol with Next.js. It includes pre-configured endpoints and tools that demonstrate common agent functionalities.
+This project is an API for interacting with NEAR Intents and ZCash. It allows deposits and balance queries for NEAR and USDT, as well as transactions within the Intents and Mixer contracts.
 
 ## Features
 
-- 🤖 Pre-configured AI agent setup
-- 🛠️ Built-in tools and endpoints:
-  - Blockchain information retrieval
-  - NEAR transaction generation
-  - Reddit frontpage fetching
-  - Twitter share intent generation
-  - Coin flip functionality
-- ⚡ Next.js 14 with App Router
-- 🎨 Tailwind CSS for styling
-- 📝 TypeScript support
-- 🔄 Hot reload development environment
+- 🪙 Deposit NEAR and USDT tokens into Intents contracts.
+- 💸 Query the balance of NEAR and USDT in Intents contracts.
+- 🔐 Deposit and withdraw NEAR with Mixer for anonymous transactions.
 
-## Quick Start
+## Available Endpoints
 
-1. Clone this repository
-2. Configure environment variables (create a `.env` or `.env.local` file)
+The API includes the following predefined endpoints:
 
-```bash
-# Get your API key from https://key.bitte.ai
-BITTE_API_KEY='your-api-key'
+### 1. **Deposit NEAR to Intents Contract**
+- **Endpoint:** `/api/tools/deposit_intents_near`
+- **Description:** Allows depositing NEAR tokens to the Intents contract.
+- **Parameters:**
+  - `accountId`: NEAR account ID (Required).
+  - `near_amount`: Amount of NEAR tokens to deposit (Required, in yoctos).
 
-ACCOUNT_ID='your-account.near'
-```
+### 2. **Deposit USDT to Intents Contract**
+- **Endpoint:** `/api/tools/deposit_intents_usdt`
+- **Description:** Allows depositing USDT tokens to the Intents contract.
+- **Parameters:**
+  - `accountId`: NEAR account ID (Required).
+  - `usdt_amount`: Amount of USDT tokens to deposit (Required).
 
-3. Install dependencies:
+### 3. **Get Balance of USDT in Intents Contract**
+- **Endpoint:** `/api/tools/balance_intents_usdt`
+- **Description:** Allows querying the balance of USDT tokens for a given NEAR account ID in the Intents contract.
+- **Parameter:**
+  - `account_id`: NEAR account ID (Required).
 
-```bash
-pnpm install
-```
+### 4. **Get Balance of NEAR in Intents Contract**
+- **Endpoint:** `/api/tools/balance_intents_near`
+- **Description:** Allows querying the balance of NEAR tokens for a given NEAR account ID in the Intents contract.
+- **Parameter:**
+  - `account_id`: NEAR account ID (Required).
 
-4. Start the development server:
+### 5. **Withdraw NEAR from Intents Contract (Under Development)**
+- **Endpoint:** `/api/tools/withdraw_intents_near`
+- **Description:** Allows withdrawing NEAR tokens from the Intents contract.
 
-```bash
-pnpm run dev
-```
-
-This will:
-
-- Start your Next.js application
-- Launch make-agent
-- Prompt you to sign a message in Bitte wallet to create an API key
-- Launch your agent in the Bitte playground
-- Allow you to freely edit and develop your code in the playground environment
-
-5. Build the project locally:
-
-```bash
-pnpm run build:dev
-```
-
-This will build the project and not trigger `make-agent deploy`
-
-- using just `build` will trigger make-agent deploy and not work unless you provide your deployed plugin url using the `-u` flag.
-
-## Available Tools
-
-The template includes several pre-built tools:
-
-### 1. Blockchain Information
-
-- Endpoint: `/api/tools/get-blockchains`
-- Returns a randomized list of blockchain networks
-
-### 2. NEAR Transaction Generator
-
-- Endpoint: `/api/tools/create-near-transaction`
-- Creates NEAR transaction payloads for token transfers
-
-### 3. EVM Transaction Generator
-
-- Endpoint: `/api/tools/create-evm-transaction`
-- Creates EVM transaction payloads for native eth transfers
-
-### 4. Twitter Share
-
-- Endpoint: `/api/tools/twitter`
-- Generates Twitter share intent URLs
-
-### 5. Coin Flip
-
-- Endpoint: `/api/tools/coinflip`
-- Simple random coin flip generator
-
-### 6. Get User
-
-- Endpoint: `/api/tools/get-user`
-- Returns the user's account ID
+### 6. **Deposit NEAR to Mixer Contract**
+- **Endpoint:** `/api/tools/deposit_mixer_near`
+- **Description:** Allows depositing NEAR tokens to the Mixer contract for anonymous transactions.
+- **Parameters:**
+  - `secret`: Secret to create a `commitment_hash` (Required).
+  - `near_amount`: Amount of NEAR tokens to deposit (Required, in yoctos).
+  
+### 7. **Withdraw NEAR from Mixer Contract**
+- **Endpoint:** `/api/tools/withdraw_mixer_near`
+- **Description:** Allows withdrawing NEAR tokens from the Mixer contract.
+- **Parameters:**
+  - `secret`: Secret to create a `commitment_hash` (Required).
+  - `recipient`: NEAR account ID of the recipient (Required).
 
 ## AI Agent Configuration
 
-The template includes a pre-configured AI agent manifest at `/.well-known/ai-plugin.json`. You can customize the agent's behavior by modifying the configuration in `/api/ai-plugins/route.ts`. This route generates and returns the manifest object.
+The AI agent configuration is predefined in the `/.well-known/ai-plugin.json` file. You can customize the agent's behavior by modifying the configuration in `/api/ai-plugins/route.ts`. This file generates and returns the plugin manifest object.
 
-## Deployment
-
-1. Push your code to GitHub
-2. Deploy to Vercel or your preferred hosting platform
-3. Add your `BITTE_API_KEY` to the environment variables
-4. The `make-agent deploy` command will automatically run during build
-
-## Making your own agent
-
-Whether you want to add a tool to this boilerplate or make your own standalone agent tool, here's you'll need:
-
-1. Make sure [`make-agent`](https://github.com/BitteProtocol/make-agent) is installed in your project:
-
-```bash
-pnpm install --D make-agent
-```
-
-2. Set up a manifest following the OpenAPI specification that describes your agent and its paths.
-3. Have an api endpoint with the path `GET /api/ai-plugin` that returns your manifest
-
-## Setting up the manifest
-
-Follow the [OpenAPI Specification](https://swagger.io/specification/#schema-1) to add the following fields in the manifest object:
-
-- `openapi`: The OpenAPI specification version that your manifest is following. Usually this is the latest version.
-- `info`: Object containing information about the agent, namely its 'title', 'description' and 'version'.
-- `servers`: Array of objects containing the urls for the deployed instances of the agent.
-- `paths`: Object containing all your agent's paths and their operations.
-- `"x-mb"`: Our custom field, containing the account id of the owner and an 'assistant' object with the agent's metadata, namely the tools it uses, and additional instructions to guide it.
+### Agent Behavior
+The agent is designed to interact with NEAR Intents and ZCash. Its main functions include:
+1. Deposit NEAR and USDT tokens into Intents contracts.
+2. Query the balance of NEAR and USDT in the Intents contracts.
+3. Deposit and withdraw NEAR with Mixer for anonymous transactions.
 
 ## Learn More
 
 - [Bitte Protocol Documentation](https://docs.bitte.ai)
 - [Next.js Documentation](https://nextjs.org/docs)
 - [OpenAPI Specification](https://swagger.io/specification/)
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
