@@ -37,15 +37,16 @@ export const whitelabelTemplateFlag = flag({
 
 export const maintenanceModeFlag = flag({
   key: "maintenanceMode",
-  defaultValue: false as boolean,
+  defaultValue: false,
   options: [
     { label: "On", value: true },
     { label: "Off", value: false },
   ],
   async decide() {
     try {
-      const isMaintenanceMode = await get("isMaintenanceMode")
-      return isMaintenanceMode === true
+      //const isMaintenanceMode = false;
+      //const isMaintenanceMode = await get("isMaintenanceMode")
+      return false
     } catch (err) {
       logger.error(err)
       return false

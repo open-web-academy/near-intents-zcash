@@ -7,6 +7,14 @@ import { useEffect, useState } from "react"
 import { useWalletSelector } from "../../providers/WalletSelectorProvider"
 //import { Wallet } from "@bitte-ai/react"
 
+const bitteAgent = {
+  id: "near-intents-zcash.vercel.app",
+  name: "NEAR Intents ZCash Assistant",
+  verified: true,
+  image: "https://z.cash/wp-content/uploads/2023/03/zcash-logo.gif",
+};
+
+
 export default function Agent() {
   const { selector } = useWalletSelector()
   console.log(selector)
@@ -20,12 +28,18 @@ export default function Agent() {
   }, [selector])
 
   return (
-    <Paper>
+    <main className="flex flex-col items-center gap-8 max-w-5xl mx-auto my-4 md:my-8">
+    <div className="h-[calc(100vh-114px)] lg:h-[calc(100vh-180px)] w-full">
       <BitteAiChat
-        agentId={"near-intents-zcash.vercel.app"}
-        apiUrl={"../api/chat"}
-        //wallet={{ near: { wallet } }}
+        options={{
+          agentImage: bitteAgent.image,
+          agentName: bitteAgent.name,
+        }}
+        agentId={bitteAgent.id}
+        apiUrl="/api/chat"
+        historyApiUrl="/api/history"
       />
-    </Paper>
+    </div>
+  </main>
   )
 }
