@@ -9,6 +9,10 @@ import { settings } from "@src/config/settings"
 
 export async function generateMetadata(): Promise<Metadata> {
   const templ = await whitelabelTemplateFlag()
+  if (templ !== "dogecoinswap") {
+    return settings.metadata.deposit
+  }
+
 
   return {}
 }

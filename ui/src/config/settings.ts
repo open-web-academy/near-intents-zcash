@@ -1,7 +1,7 @@
 import type { Settings } from "@src/types/interfaces"
 
 export const settings: Settings = {
-  appName: "NEAR Intents",
+  appName: "NEAR Intents x ZCash AI Agent",
   metadata: {
     home: {
       title: "Cross-Chain Asset Swapping",
