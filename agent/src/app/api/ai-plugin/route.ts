@@ -17,7 +17,7 @@ export async function GET() {
         "x-mb": {
             "account-id": ACCOUNT_ID,
             assistant: {
-                name: "NEAR Intents ZCash Assistant",
+                name: "AI-Mixer Assistant",
                 description: "API to interact with NEAR Intents and ZCash",
                 instructions : `
                     You are an assistant designed to interact with NEAR Intents and ZCash. 
