@@ -28,7 +28,7 @@ export default function Agent() {
   }, [selector])
 
   return (
-    <main className="flex flex-col items-center gap-8 max-w-5xl mx-auto my-4 md:my-8">
+    <main className="flex flex-col items-center gap-8 max-w-5xl mx-auto my-4 md:my-8 w-full">
     <div className="h-[calc(100vh-114px)] lg:h-[calc(100vh-180px)] w-full">
       <BitteAiChat
         options={{
